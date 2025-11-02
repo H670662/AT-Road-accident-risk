@@ -1,0 +1,156 @@
+/* ==== Light Theme for Accident Risk Predictor ==== */
+:root{
+    --bg: #f6f8fb;          /* page background */
+    --card: #ffffff;        /* card background */
+    --text: #1e2330;        /* main text */
+    --muted: #5f6b7a;       /* secondary text */
+    --accent: #0ea5e9;      /* blue accents */
+    --green: #22c55e;       /* meter low */
+    --yellow: #f59e0b;      /* meter mid */
+    --red: #ef4444;         /* meter high */
+    --radius: 16px;
+    --shadow: 0 16px 40px rgba(31, 41, 55, 0.12);
+}
+
+/* reset & layout */
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+    margin:0;
+    background: radial-gradient(1200px 500px at 50% 120%, rgba(14,165,233,0.08), transparent 60%),
+    linear-gradient(180deg, #fafcff, #f6f8fb);
+    background-repeat: no-repeat;
+    color:var(--text);
+    font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+}
+
+/* card */
+.card{
+    width:100%;
+    max-width:560px;
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    border:1px solid #e6ebf2;
+}
+.card-header{
+    padding:22px 24px 16px 24px;
+    background: linear-gradient(180deg, #ffffff, #f9fbfe);
+    border-bottom:1px solid #e9eef5;
+}
+.card-header h1{
+    margin:0;
+    font-size:22px;
+    letter-spacing:.2px;
+    color:#0f172a;
+}
+/* remove the old yellow road stripe if present */
+.card-header::after{ content:none; }
+
+.card-body{ padding:24px; }
+
+/* form */
+label{
+    display:block;
+    margin-bottom:12px;
+    color:var(--muted);
+    font-weight:600;
+    letter-spacing:.2px;
+}
+select, input[type="number"]{
+    width:100%;
+    background:#ffffff;
+    color:var(--text);
+    border:1px solid #d9e1ea;
+    border-radius:10px;
+    padding:12px 14px;
+    outline:none;
+    transition:border-color .2s, box-shadow .2s, background .2s;
+}
+select:focus, input[type="number"]:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(14,165,233,.18);
+}
+.actions{ margin-top:16px; }
+button{
+    width:100%;
+    padding:12px 16px;
+    border:0;
+    border-radius:12px;
+    background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+    color:#001019;
+    font-weight:700;
+    letter-spacing:.3px;
+    cursor:pointer;
+    transition: transform .05s ease, filter .2s ease;
+}
+button:active{ transform: translateY(1px); }
+button:hover{ filter: brightness(1.04); }
+
+.hr{ height:1px; background:#e9eef5; margin:18px 0; border-radius:1px; }
+.help{ color:var(--muted); font-size:13px; }
+
+/* result */
+.result{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    text-align:center;
+}
+.result .value{
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:.4px;
+    color:#0f172a;
+}
+
+/* --- Meter with a vertical indicator --- */
+.meter {
+    position: relative;
+    width: 100%;
+    height: 14px;
+    border-radius: 999px;
+    border: 1px solid #e3eaf3;
+    background: linear-gradient(90deg,
+    var(--green) 0%,
+    var(--yellow) 50%,
+    var(--red) 100%);
+    overflow: hidden;
+}
+
+/* The thin vertical line that moves */
+.meter-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #111;                 /* a small dark core line */
+    box-shadow:
+            0 0 0 2px white,               /* white outline for visibility */
+            0 0 6px rgba(0,0,0,0.3);
+    left: 0%;
+    transition: left 900ms cubic-bezier(.2,.9,.2,1);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+/* face: emoji only, no circle */
+.face{
+    font-size:6rem;   /* big emoji */
+    line-height:1;
+    margin-top:8px;
+    opacity:0;
+    transform:scale(0.9);
+    transition: opacity .4s ease, transform .4s ease;
+    text-shadow: 0 0 10px rgba(0,0,0,0.06);
+}
+.face.visible{
+    opacity:1;
+    transform:scale(1);
+}

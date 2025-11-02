@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Accident Risk Predictor</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/form.js" defer></script>
+</head>
+<body>
+<main class="card">
+  <div class="card-header">
+    <h1>Accident Risk Predictor</h1>
+  </div>
+  <div class="card-body">
+    <form id="predictForm">
+      <label>Where will you drive?
+        <select id="roadType" required>
+          <option value="" disabled selected>Choose…</option>
+          <option value="highway">Highway</option>
+          <option value="urban">Urban area</option>
+          <option value="rural">Rural area</option>
+        </select>
+      </label>
+
+      <label>Max speed (km/h)
+        <input id="maxSpeed" type="number" min="1" max="400" required>
+      </label>
+
+
+      <label>Time of day
+        <select id="timeOfDay" required>
+          <option value="" disabled selected>Choose…</option>
+          <option value="morning">Morning</option>
+          <option value="afternoon">Afternoon</option>
+          <option value="evening">Evening</option>
+        </select>
+      </label>
+
+      <label>Weather
+        <select id="weather" required>
+          <option value="" disabled selected>Choose…</option>
+          <option value="clear">Clear</option>
+          <option value="rainy">Rainy</option>
+          <option value="foggy">Foggy</option>
+        </select>
+      </label>
+
+
+      <div class="actions">
+        <button type="submit">Predict</button>
+      </div>
+    </form>
+
+    <div id="result" class="result" style="display:none;">
+      <div class="value" id="riskPercent">--</div>
+      <div class="meter">
+        <div class="meter-marker" id="meterMarker"></div>
+      </div>
+      <div class="face" id="faceHolder"></div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
